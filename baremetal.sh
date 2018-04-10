@@ -12,7 +12,7 @@ os_ironic_node() {
     while read -r; do
         instance_id="$REPLY"
         openstack baremetal node list -f value -c Name -c 'Instance UUID' | \
-            grep "$(openstack server $instance_id -f value -c id)" | cut -d " " -f1
+            grep "$(openstack server show $instance_id -f value -c id)" | cut -d " " -f1
     done
 }
 
